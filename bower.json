@@ -6,7 +6,7 @@
     "underscore-amd": "latest",
     "backbone-amd": "latest",
     "requirejs": "latest",
-    "handlebars": "latest"
+    "jquery-mobile": "latest"
   },
   "install" : {
     "path" : "public/js/lib"

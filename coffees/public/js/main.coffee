@@ -1,8 +1,8 @@
 requirejs.config({
   paths: {
-    'jquery': '/js/lib/jquery',
-    'underscore': '/js/lib/underscore',
-    'backbone': '/js/lib/backbone',
+    'jquery': '/js/lib/jquery/jquery',
+    'underscore': '/js/lib/underscore-amd/underscore',
+    'backbone': '/js/lib/backbone-amd/backbone',
     #TODO bowerin kautta mieluusti
     'jquerymobile': '/jquerymobile' 
   }
