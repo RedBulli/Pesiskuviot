@@ -1,0 +1,14 @@
+{
+  "name" : "pesiskuvio", 
+  "version" : "0.1.0",
+  "dependencies": {
+    "jquery": "latest",
+    "underscore-amd": "latest",
+    "backbone-amd": "latest",
+    "requirejs": "latest",
+    "handlebars": "latest"
+  },
+  "install" : {
+    "path" : "public/js/lib"
+  }
+}
