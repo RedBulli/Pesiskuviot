@@ -4,10 +4,11 @@ define(['./backbone-sync.js', 'backbone'],
     class Models
 
     class Models.Player extends Backbone.Model
-      setPosition: (position) ->
+      setPosition: (position, silent) ->
         @set('x', position.x)
         @set('y', position.y)
-        @save()
+        if not silent
+          @save()
       setLock: () ->
         @locked = true
         @trigger('change')

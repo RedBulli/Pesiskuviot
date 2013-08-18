@@ -26,9 +26,9 @@ define([], () ->
           @releasePlayer()
     mousemove: (event) =>
       if @player
-        @movePlayer(event)
-    movePlayer: (event) ->
-      @player.setPosition(@getRelativeMousePoint(event))
+        @movePlayer(event, true)
+    movePlayer: (event, silent) ->
+      @player.setPosition(@getRelativeMousePoint(event), silent)
     lockPlayer: (event) ->
       @player = @players.getPlayer(@getRelativeMousePoint(event))
       if @player
