@@ -10,14 +10,32 @@ define([], () ->
       @player = null
     setSize: (@sizeFactor) ->
     mousedown: (event) =>
-      @player = @players.getPlayer(@getRelativeMousePoint(event))
+      if not @player
+        @player = @lockPlayer(event)
+        if @player
+          if @config.clickMove
+            @player.firstClick = true
+      else
+        if @config.clickMove
+          @movePlayer(event)
     mouseup: (event) =>
       if @player
-        @player = null
-        #@getRelativeMousePoint(event)
+        if @player.firstClick
+          @player.firstClick = false
+        else
+          @releasePlayer()
     mousemove: (event) =>
       if @player
-        @player.setPosition(@getRelativeMousePoint(event))
+        @movePlayer(event)
+    movePlayer: (event) ->
+      @player.setPosition(@getRelativeMousePoint(event))
+    lockPlayer: (event) ->
+      @player = @players.getPlayer(@getRelativeMousePoint(event))
+      if @player
+        @player.setLock()
+    releasePlayer: () ->
+      @player.releaseLock()
+      @player = null
     getRelativeMousePoint: (event) ->
       canvasOffset = @canvas.offset()
       x = (event.pageX - canvasOffset.left) / @config.scale

@@ -8,6 +8,12 @@ define(['./backbone-sync.js', 'backbone'],
         @set('x', position.x)
         @set('y', position.y)
         @save()
+      setLock: () ->
+        @locked = true
+        @trigger('change')
+      releaseLock: () ->
+        @locked = false
+        @trigger('change')
 
     class Models.Players extends Backbone.Collection
       model: Models.Player
@@ -19,9 +25,10 @@ define(['./backbone-sync.js', 'backbone'],
           if distance < closest_distance
             closest_player = player
             closest_distance = distance
-          if distance <= 1
-            return player
-        return null
+        if closest_distance <= 5
+          return closest_player
+        else  
+          return null
       getDistance: (x1, x2, y1, y2) ->
         return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2))
 

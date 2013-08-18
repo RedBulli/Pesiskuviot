@@ -31,8 +31,12 @@ define(['backbone', './field.js'], (Backbone, Field) ->
       playerPosition = @getRelativePosition(player)
       @context.fillText(player.get('position'), playerPosition.x - disp, playerPosition.y + @config.scale*0.5)
       @context.beginPath()
+      if player.locked
+        @context.save()
+        @context.lineWidth = 4
       @context.arc(playerPosition.x, playerPosition.y, @config.scale, 0, 2 * Math.PI, false)
       @context.stroke()
+      @context.restore()
 
   Views
 )

@@ -13,7 +13,9 @@ requirejs(['node-static', 'http', 'socket.io', './app.js'],
       request.addListener 'end', ->
         file.serve request, response
 
-    ).listen 4000
+    )
+    httpServer.address = '0.0.0.0'
+    httpServer.listen 4000
 
     exports.socketio = io.listen(httpServer)
     application.initialize(exports.socketio)  
